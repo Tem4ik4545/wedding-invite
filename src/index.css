@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Основной стиль для html */
+  html {
+    font-family: 'Lora', serif;
+    background: url('public/bg.jpg') no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
+
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 20px;
+    }
+  }
+
+  /* Обёртка для фонового узора */
+  .background-wrapper {
+    position: relative;
+  }
+
+  /* Псевдоэлемент для узора (сердца и кольца) */
+  .background-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+      url('public/icons/heart.svg') repeat,
+      url('public/icons/ring.svg') repeat;
+    background-size: 200px 200px, 100px, 100px;
+    background-position: top left, center, bottom right;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Псевдоэлемент для дополнительного узора (голуби) с анимацией */
+  .background-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+      url('public/icons/dove.svg') repeat;
+    background-size: 250px 250px, 150px;
+    background-position: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 2;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  button {
+    @apply transition-all duration-300;
+  }
+}
+
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+
+
